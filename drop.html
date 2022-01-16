@@ -37,51 +37,55 @@
         <h1>Drop</h1>
         <p>Two player game about not getting wett</p>
         <script type="application/processing">
-          var xPositions = [45, 80, 100, 110,120,130,140,150,160,170,];
-          var yPositions = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
-          var BlobbX = 200;
+          //Positions for grass??
+          var xPositions = [45*2, 80*2, 100*2, 110*2, 120*2, 130*2, 140*2, 150*2, 160*2, 170*2];
+          var yPositions = [10*2, 10*2, 10*2, 10*2, 10*2, 10*2, 10*2, 10*2, 10*2, 10*2];
+          var BlobbX = 200*2;
           var grass = loadImage("GrassBlock.png");
-          //var grass = fileSystemModule.File.fromPath("GrassBlock.png");
           var points = 0;
-          var ladda = -75;
-          var laddahastihet = 1;
+          var ladda = -75*2;
+          var laddahastihet = 1*2;
           var increaseCharge = 0;
           var skyColor = 0;
           var xCloud = 0;
 
           void setup() {
-            size(400, 400);
+            size(400*2, 400*2);
           }
 
           void keyPressed() {
             //styra
             if (keyCode === LEFT) {
-                BlobbX -= 2;
+                BlobbX -= 2*2;
             }
 
             if(keyCode === RIGHT){
-                BlobbX += 2;
+                BlobbX += 2*2;
             }
           }
 
           var cloud = function(xCloudx) {
             noStroke();
             fill(255, 255, 255);
-            ellipse(xCloudx + 10, 100,115,55);
-            ellipse(xCloudx + 17, 96,62,27);
-            ellipse(xCloudx + 9, 80, 50, 35);
-            ellipse(xCloudx + 300, 80, 43, 30);
-            ellipse(xCloudx + 317, 67, 70, 50);
-            ellipse(xCloudx + 347, 77, 80, 30);
+            ellipse(xCloudx + 10*2, 100*2, 115*2, 55*2);
+            ellipse(xCloudx + 17*2, 96*2, 62*2, 27*2);
+            ellipse(xCloudx + 9*2, 80*2, 50*2, 35*2);
+            ellipse(xCloudx + 300*2, 80*2, 43*2, 30*2);
+            ellipse(xCloudx + 317*2, 67, 70, 50);
+            ellipse(xCloudx + 347*2, 77*2, 80*2, 30*2);
             xCloud++;
-            if (xCloudx > 500){xCloudx = -400; }
+            
+            if (xCloudx > 500*2) {
+              xCloudx = -400*2;
+            }
+
             stroke(0, 0, 0);
           };
           
           // Add Dropp
           mouseClicked = function() {
             if(ladda>=0){
-              ladda = -75;
+              ladda = -75*2;
               xPositions.push(mouseX);
               yPositions.push(10);
             }
@@ -89,92 +93,92 @@
 
 
           draw = function() {
-              background(0, 162, 255);
+            background(0, 162, 255);
 
-              //clouds
-              for (var i = 0; i < laddahastihet; i++) {
-                cloud(i*214);
-              }
+            //clouds
+            for (var i = 0; i < laddahastihet; i++) {
+              cloud(i*214*2);
+            }
               
-          //laddare
-          fill(0, 0, 0);
-          rect(350, 50, 25, 75);
-          fill(255, 0, 0);
-          rect(350, 50-ladda, 25, 75+ladda);
-          fill(0, 0, 0);
+            //laddare
+            fill(0, 0, 0);
+            rect(350*2, 50*2, 25*2, 75*2);
+            fill(255, 0, 0);
+            rect(350*2, 50*2-ladda, 25*2, 75*2+ladda);
+            fill(0, 0, 0);
           
           // Points Text
-          text(points, 51, 59, 236, 275);
+          text(points, 51*2, 59*2, 236*2, 275*2);
           
           // Blobb
           noFill();
-          rect(BlobbX-25,250,50,50);
+          rect(BlobbX-25*2, 250*2, 50*2, 50*2);
           fill(252, 0, 252);
-          ellipse(BlobbX, 275, 50, 50);
+          ellipse(BlobbX, 275*2, 50*2, 50*2);
           fill(0,0,0);
-          ellipse(BlobbX+10, 284, 20, 13);
-          ellipse(BlobbX-10, 284, 20, 10);
-          ellipse(BlobbX+13, 271, 10, 10);
+          ellipse(BlobbX + 10*2, 284*2, 20*2, 13*2);
+          ellipse(BlobbX - 10*2, 284*2, 20*2, 10*2);
+          ellipse(BlobbX + 13*2, 271*2, 10*2, 10*2);
           fill(173, 0, 0);
-          ellipse(BlobbX-11, 271, 10, 10);
+          ellipse(BlobbX - 11*2, 271*2, 10*2, 10*2);
 
-          if (BlobbX < 25) {
+          if (BlobbX < 25*2) {
               //Blobb
               noFill();
-              rect(400+BlobbX-25,250,50,50);
+              rect(400*2 + BlobbX - 25*2, 250*2, 50*2, 50*2);
               fill(252, 0, 252);
-              ellipse(400+BlobbX, 275, 50, 50);
+              ellipse(400*2 + BlobbX, 275*2, 50*2, 50*2);
               fill(0,0,0);
-              ellipse(400+BlobbX+10,284,20,13);
-              ellipse(400+BlobbX-10,284,20,10);
-              ellipse(400+BlobbX+13,271,10,10);
+              ellipse(400*2 + BlobbX + 10*2, 284*2, 20*2, 13*2);
+              ellipse(400*2 + BlobbX - 10*2, 284*2, 20*2, 10*2);
+              ellipse(400*2 + BlobbX + 13*2, 271*2, 10*2, 10*2);
               fill(173, 0, 0);
-              ellipse(400+BlobbX-11,271,10,10);
+              ellipse(400*2 + BlobbX - 11*2, 271*2, 10*2, 10*2);
           }
               
-          if (BlobbX > 375) {
+          if (BlobbX > 375*2) {
               //Blobb
               noFill();
-              rect(-400+BlobbX-25,250,50,50);
+              rect(-400*2+BlobbX-2*25,2*250,2*50,2*50);
               fill(252, 0, 252);
-              ellipse(-400+BlobbX, 275, 50, 50);
+              ellipse(-400*2 + BlobbX, 275*2, 50*2, 50*2);
               fill(0,0,0);
-              ellipse(-400+BlobbX+10,284,20,13);
-              ellipse(-400+BlobbX-10,284,20,10);
-              ellipse(-400+BlobbX+13,271,10,10);
+              ellipse(-400*2 + BlobbX + 10*2, 284*2, 20*2, 13*2);
+              ellipse(-400*2+BlobbX-10,284,20, 10*2);
+              ellipse(-400*2+BlobbX+13*2,271*2, 10*2, 10*2);
               fill(173, 0, 0);
-              ellipse(-400+BlobbX-11,271,10,10); 
+              ellipse(-400*2 + BlobbX - 11*2, 271*2, 10*2, 10*2); 
           }
               
-          if(BlobbX<=-25) {
-              BlobbX = 375;
+          if(BlobbX<=-25*2) {
+              BlobbX = 375*2;
           }
 
-          if(BlobbX>425){
-              BlobbX = 25;
+          if(BlobbX>425*2){
+              BlobbX = 25*2;
           }
               
           // Droppar som faller
           for (var i = 0; i < xPositions.length; i++) {
               fill(0, 79, 163);
-              ellipse(xPositions[i], yPositions[i], 10, 10);
-              yPositions[i] += 5;
-              if(yPositions[i]>250 && yPositions[i]<300 && xPositions[i]<BlobbX+25 && xPositions[i]>BlobbX-25){
+              ellipse(xPositions[i], yPositions[i], 10*2, 10*2);
+              yPositions[i] += 5*2;
+              if(yPositions[i] > 250*2 && yPositions[i] < 2*300 && xPositions[i] < BlobbX + 2*25 && xPositions[i] > BlobbX-25){
                   println("GAME OVER");
-                  textSize(50);
-                  text("points" + points, 131,130,128,125);
+                  textSize(50*2);
+                  text("points" + points, 131*2, 130*2, 128*2, 125*2);
                   draw = 1;
               }
           }
 
-          for (var flytta = 0; 20>flytta; flytta++){
-            image(grass,92*flytta,228,93,244);
+          for (var flytta = 0; 20*2 > flytta; flytta++){
+            image(grass, 2*92*flytta ,2*228, 2*93, 2*244);
           }
           
           points++;
           increaseCharge++;
           
-          if (increaseCharge > 1000) {
+          if (increaseCharge > 1000*2) {
               increaseCharge = 0;
               laddahastihet++;
               println("level up");
