@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Games - Drop</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body>
+
+
+    <!-- ================================
+    Start Navigation Bar
+    ================================= -->
+    <header>
+        <div class="headerCol">
+          <div class="container-fluid">
+            <div class="row align-items-center">
+              <div class="col">
+                <div class="navCollapseCol">
+                  <div class="navCol">
+                    <ul>
+                      <li><a href="index.html">Mustachio</a></li>
+                      <li><a href="drop.html">Drop</a></li>
+                      <li><a href="BallUppAndDown.html">Ball Upp and Down</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- ================================
+      End Navigation Bar
+      ================================= -->
+      <div class="row align-items-center"></div>
+        <h1>Boll Upp och Ner</h1>
+        <p>En Boll som Hoppar Upp och Ner</p>
+        <script type="application/processing">
+            var y =0;
+            var k=1;
+            var x=0;
+            var move = 0;
+            var bollstandard = 200;
+            var jumpHight = -62;
+            var grass = loadImage("GrassBlock.png");
+            var xCloud = 0;
+            
+            void setup() {
+                size(450, 400);
+            }
+
+            void keyPressed() {
+
+                if (keyCode === LEFT) {
+                    x=x-3;
+                }
+
+                if (keyCode === RIGHT) {
+                    x=x+3;
+                }
+            }
+
+            var rektangel = function(xposition,yposition,rektbredd,rektlangd,rotera) {
+                fill(17, 219, 24);
+                rect(xposition+move,yposition,rektbredd,rektlangd);
+                if(((200+x)>xposition+move) && ((xposition+rektbredd+move)>(200+x))&&((yposition)<(bollstandard-y+35/2))&&k<0){
+                    bollstandard = yposition-rektlangd-35/2;
+                    k=1;
+                    y=jumpHight;
+                    println(yposition);
+                    println(bollstandard-y+35/2);
+                }
+
+                //clouds
+                noStroke();
+                fill(255, 255, 255);
+                ellipse(xCloud + 10, 100,115,55);
+                ellipse(xCloud + 17, 96,62,27);
+                ellipse(xCloud + 9,80,50,35);
+                ellipse(xCloud + 300,80,43,30);
+                ellipse(xCloud + 317,67,70,50);
+                ellipse(xCloud + 347,77,80,30);
+                xCloud++;
+                
+                if (xCloud > 500) {
+                    xCloud = -400;
+                }
+            };
+            
+            draw = function() {
+                move -= 1;
+                image(grass,0,200,50,50);
+                background(33, 122, 255);
+                //rect(0,200+62+35/2,415,159);
+                rektangel(376,237,100,60,0);
+                
+                fill(255, 0, 0);
+                stroke(0,0,0);
+                ellipse(200+x, bollstandard-y, 35, 35);
+                y = y+k;
+                for(var flytta = 0; 20>flytta; flytta++) {
+                    image(grass,92*flytta,207,93,244);
+                }
+                if(y>0){
+                    k-=1;    
+                }
+
+                if(y<jumpHight){
+                    k=k+2;
+                }
+            };
+        </script>
+        <canvas> </canvas>
+    </div>
+    </body>
+</html>
