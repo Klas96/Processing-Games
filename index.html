@@ -5,6 +5,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
     </head>
     <body>
+        <h1>Mustachio</h1>
+        <p>A fun Game about a fun dude jumping</p>
+        <div class="center">
         <script type="application/processing">
             var h = 0;
             var k = 0;
@@ -12,27 +15,27 @@
             var Level = 1;
             var bredd = 0;
             var move = 0;
-            var hastighet = 01;
-            var stageLength = 3400;
-            var points = (move + stageLength * (Level-1));
+            var hastighet = 2;
+            var stageLength = 3400*2;
+            var points = (move + stageLength * (Level-2));
             
             
             void setup() {
             
-              size(450, 400);
+              size(450*2, 400*2);
             
             }
             
             
             var GameOver = function(recX,recY,recBredd,recLangd){
                 rect(recX-move,recY,recBredd,recLangd);
-                if(recX-move<mouseX+25-bredd/2+bredd && mouseX-25-bredd/2<recX-move+recBredd && recY < 275-25-h-bredd/2 + 50+bredd && 275-25-h-bredd/2<recY+recLangd){
+                if(recX-move<mouseX+25*2-bredd/2+bredd && mouseX-25*2-bredd/2<recX-move+recBredd && recY < 275*2-25*2-h-bredd/2 + 50*2+bredd && 275*2-25*2-h-bredd/2<recY+recLangd){
                     
                     println("GAME OVER");
                     fill(0,0,0);
-                    textSize(50);
-                    text("GAME OVER",50,50);
-                    text("Points "+(move+stageLength * (Level-1)),50,100);
+                    textSize(50*2);
+                    text("GAME OVER",50*2,50*2);
+                    text("Points "+(move+stageLength * (Level-1)),50*2,100*2);
                     fill(255,0,0);
                     GameOver = 1;
                 }
@@ -42,23 +45,23 @@
                 background(14, 116, 204);
                 //clouds
                 noStroke();
-                    fill(255, 255, 255);
-                    ellipse(x + 10, 100,115,55);
-                    ellipse(x + 17, 96,62,27);
-                    ellipse(x + 9,80,50,35);
-                    ellipse(x + 300,80,43,30);
-                    ellipse(x + 317,67,70,50);
-                    ellipse(x + 347,77,80,30);
+                    fill(255*2, 255*2, 255*2);
+                    ellipse(x + 10*2, 100*2,115*2,55*2);
+                    ellipse(x + 17*2, 96*2,62*2,27*2);
+                    ellipse(x + 9*2,80*2,50*2,35*2);
+                    ellipse(x + 300*2,80*2,43*2,30*2);
+                    ellipse(x + 317*2,67*2,70*2,50*2);
+                    ellipse(x + 347*2,77*2,80*2,30*2);
                     x++;
-                    if (x > 500){x = -400; }
+                    if (x > 500*2){x = -400*2; }
                 stroke(0, 0, 0);
-                fill(37, 224, 0);
-                rect(-15,300,505,445);
+                fill(37*2, 224*2, 0);
+                rect(-15*2,300*2,505*2,445*2);
                 
                 //Jump
                 if(keyPressed){
-                    h = h+20;
-                    bredd += 3;
+                    h = h+20*2;
+                    bredd += 3*2;
                     k++;
                 }
                 
@@ -66,8 +69,8 @@
                    h = 0;
                 }
                 
-                if(275-bredd/2-h<0){
-                h = 275-bredd/2;
+                if(275*2-bredd/4-h<0){
+                h = 275*2-bredd/4;
                 }
                 
                 //gravety
@@ -78,35 +81,35 @@
                 }
                 //Blobb
                 noFill();
-                rect(mouseX-25-bredd/2,275-25-h-bredd/2,50+bredd,50+bredd);
+                rect(mouseX-25*2-bredd/2,275*2-25*2-h-bredd/2,50*2+bredd,50*2+bredd);
                 fill(252, 0, 252);
-                ellipse(mouseX, 275-h,50+bredd,50+bredd);
+                ellipse(mouseX, 275*2-h,50*2+bredd,50*2+bredd);
                 fill(0,0,0);
-                ellipse(mouseX+10,284-h,20,13);
-                ellipse(mouseX-10,284-h,20,10);
-                ellipse(mouseX+13,271-h,10,10);
+                ellipse(mouseX+10*2,284*2-h,20*2,13*2);
+                ellipse(mouseX-10*2,284*2-h,20*2,10*2);
+                ellipse(mouseX+13*2,271*2-h,10*2,10*2);
                 fill(173, 0, 0);
-                ellipse(mouseX+-11,271-h,10,10);
+                ellipse(mouseX+-11*2,271*2-h,10*2,10*2);
                 noStroke();
                 //stage
                 stroke(0, 0, 0);
                 fill(255, 0, 0);
-                GameOver(434,246,40,53);
-                GameOver(599,141,40,53);
-                GameOver(770,210,40,54);
-                GameOver(890,101,40,53);
-                GameOver(1074,178,75,124);
-                GameOver(1296,108,61,92);
-                GameOver(1413,146,61,92);
-                GameOver(1691,100,49,118);
-                GameOver(1891,146,49,118);
-                GameOver(2091,186,49,118);
-                GameOver(2291,146,49,118);
-                GameOver(2491,46,49,118);
-                GameOver(2691,146,100,118);
-                GameOver(2890,26,49,70);
-                GameOver(3050,116,49,118);
-                GameOver(3250,146,49,118);
+                GameOver(434*2,246*2,40*2,53*2);
+                GameOver(599*2,141*2,40*2,53*2);
+                GameOver(770*2,210*2,40*2,54*2);
+                GameOver(890*2,101*2,40*2,53*2);
+                GameOver(1074*2,178*2,75*2,124*2);
+                GameOver(1296,108,61,92*2);
+                GameOver(1413*2,146*2,61*2,92*2);
+                GameOver(1691*2,100*2,49*2,118*2);
+                GameOver(1891*2,146*2,49*2,118*2);
+                GameOver(2091*2,186*2,49*2,118*2);
+                GameOver(2291*2,146*2,49*2,118*2);
+                GameOver(2491*2,46*2,49*2,118*2);
+                GameOver(2691*2,146*2,100*2,118*2);
+                GameOver(2890*2,26*2,49*2,70*2);
+                GameOver(3050*2,116*2,49*2,118*2);
+                GameOver(3250*2,146*2,49*2,118*2);
                 move = move + hastighet;
                 if(move > stageLength){
                     hastighet++;
@@ -121,5 +124,6 @@
             };
         </script>
         <canvas> </canvas>
+    </div>
     </body>
 </html>
