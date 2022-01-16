@@ -15,26 +15,32 @@ font-family: 'Heebo', sans-serif; */
   --black: 900;
   --lightBg: #292424;
 }
+
 html {
   scroll-behavior: smooth;
 }
+
 body {
   font-family: var(--baseFont);
   color: var(--baseColor);
   line-height: normal;
   background-color: rgb(20, 20, 20);
 }
+
 ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
+
 img {
   max-width: 100%;
 }
+
 a {
   color: inherit;
 }
+
 a:hover {
   color: var(--primaryHoverColor);
 }
@@ -50,42 +56,49 @@ a:hover {
   font-weight: var(--bold);
   font-family: var(--titleFont)
 }
+
 .lgTitle {
   font-size: 30px;
   line-height: normal;
   font-weight: var(--bold);
   font-family: var(--titleFont)
 }
+
 .mdTitle {
   font-size: 26px;
   line-height: normal;
   font-weight: var(--bold);
   font-family: var(--titleFont)
 }
+
 .smTitle {
   font-size: 22px;
   line-height: normal;
   font-weight: var(--regular);
   font-family: var(--titleFont)
 }
+
 .smText {
   font-size: 22px;
 }
+
 .xsTitle {
   font-size: 18px;
   line-height: normal;
 }
 
+
 .regular {
   font-weight: var(--regular);
 }
+
 .medium {
   font-weight: var(--medium);
 }
+
 .bold {
   font-weight: var(--bold);
 }
-
 
 .headerCol {
   background-color: #353535;
@@ -99,17 +112,18 @@ a:hover {
 	right: 0;
 	top: 0;
 }
+
 .fixedHeader .headerCol {
 	padding: 10px 0;
 	-webkit-box-shadow: 0 0 24px rgba(0,0,0,0.1);
   box-shadow: 0 0 24px rgba(0,0,0,0.1);
 }
 
-
 /* navigation */
 .navCol {
-	text-align: right;
+	text-align: center;
 }
+
 .navCol a {
 	font-size: 20px;
 	color: rgb(185, 174, 174);
@@ -117,9 +131,11 @@ a:hover {
   display: inline-block;
   position: relative;
 }
+
 .navCol a:hover {
   color: var(--primaryColor);
 }
+
 .navCol a::before {
   content: "";
   position: absolute;
@@ -134,17 +150,20 @@ a:hover {
   transition: all 500ms ease-in-out 0s;
   opacity: 0;
 }
+
 .navCol a.active::before {
   opacity: 1;
   width: 27px;
   right: auto;
   left: 0;
 }
+
 .navCol a:hover::before {
   opacity: 1;
   left: 0;
   right: 0;
 }
+
 .navCol a.active {
   color: var(--primaryColor);
 }
