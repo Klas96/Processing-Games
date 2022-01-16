@@ -1,47 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Games - Drop</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
-        <link href="style.css" rel="stylesheet">
-    </head>
-    <body>
-
-
-    <!-- ================================
-    Start Navigation Bar
-    ================================= -->
-    <header>
-        <div class="headerCol">
-          <div class="container-fluid">
-            <div class="row align-items-center">
-              <div class="col">
-                <div class="navCollapseCol">
-                  <div class="navCol">
-                    <ul>
-                      <li><a href="index.html">Mustachio</a></li>
-                      <li><a href="drop.html">Drop</a></li>
-                      <li><a href="">Ball Upp and Down</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-      <!-- ================================
-      End Navigation Bar
-      ================================= -->
-      <div class="row align-items-center"></div>
-        <h1>Drop</h1>
-        <p>Two player game about not getting wett</p>
-        <script type="application/processing">
           var xPositions = [45, 80, 100, 110,120,130,140,150,160,170,];
-          var yPositions = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
+          var yPositions = [10, 10, 10, 10,10,10,10,10,10,10];
           var BlobbX = 200;
-          var grass = loadImage("GrassBlock.png");//Problem
-          //var grass = fileSystemModule.File.fromPath("GrassBlock.png");
+          var grass = getImage("GrassBlock.png");
           var points = 0;
           var ladda = -75;
           var laddahastihet = 1;
@@ -50,18 +10,7 @@
           var xCloud = 0;
 
           void setup() {
-            size(450, 400);
-          }
-
-          void keyPressed() {
-            //styra
-            if (keyCode === LEFT) {
-                BlobbX-=2;
-            }
-
-            if(keyCode === RIGHT){
-                BlobbX+=2;
-            }
+            size(900, 800);
           }
 
           var cloud = function(xCloudx) {
@@ -170,6 +119,15 @@
           for (var flytta = 0; 20>flytta; flytta++){
             image(grass,92*flytta,228,93,244);
           }
+
+          //styra
+          if (keyIsPressed && keyCode === LEFT) {
+              BlobbX-=2;
+          }
+
+          if(keyIsPressed && keyCode === RIGHT){
+              BlobbX+=2;
+          }
           
           points++;
           increaseCharge++;
@@ -184,8 +142,3 @@
             ladda += laddahastihet;
           }
         };
-        </script>
-        <canvas> </canvas>
-    </div>
-    </body>
-</html>
