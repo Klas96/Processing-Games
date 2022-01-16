@@ -50,17 +50,17 @@
           var xCloud = 0;
 
           void setup() {
-            size(450, 400);
+            size(400, 400);
           }
 
           void keyPressed() {
             //styra
             if (keyCode === LEFT) {
-                BlobbX-=2;
+                BlobbX -= 2;
             }
 
             if(keyCode === RIGHT){
-                BlobbX+=2;
+                BlobbX += 2;
             }
           }
 
@@ -69,10 +69,10 @@
             fill(255, 255, 255);
             ellipse(xCloudx + 10, 100,115,55);
             ellipse(xCloudx + 17, 96,62,27);
-            ellipse(xCloudx + 9,80,50,35);
-            ellipse(xCloudx + 300,80,43,30);
-            ellipse(xCloudx + 317,67,70,50);
-            ellipse(xCloudx + 347,77,80,30);
+            ellipse(xCloudx + 9, 80, 50, 35);
+            ellipse(xCloudx + 300, 80, 43, 30);
+            ellipse(xCloudx + 317, 67, 70, 50);
+            ellipse(xCloudx + 347, 77, 80, 30);
             xCloud++;
             if (xCloudx > 500){xCloudx = -400; }
             stroke(0, 0, 0);
@@ -92,15 +92,15 @@
               background(0, 162, 255);
 
               //clouds
-              for (var i = 0; i<laddahastihet; i++) {
+              for (var i = 0; i < laddahastihet; i++) {
                 cloud(i*214);
               }
               
           //laddare
           fill(0, 0, 0);
-          rect(350,50,25,75);
+          rect(350, 50, 25, 75);
           fill(255, 0, 0);
-          rect(350,50-ladda,25,75+ladda);
+          rect(350, 50-ladda, 25, 75+ladda);
           fill(0, 0, 0);
           
           // Points Text
@@ -112,13 +112,13 @@
           fill(252, 0, 252);
           ellipse(BlobbX, 275, 50, 50);
           fill(0,0,0);
-          ellipse(BlobbX+10,284,20,13);
-          ellipse(BlobbX-10,284,20,10);
-          ellipse(BlobbX+13,271,10,10);
+          ellipse(BlobbX+10, 284, 20, 13);
+          ellipse(BlobbX-10, 284, 20, 10);
+          ellipse(BlobbX+13, 271, 10, 10);
           fill(173, 0, 0);
-          ellipse(BlobbX-11,271,10,10);
+          ellipse(BlobbX-11, 271, 10, 10);
 
-          if (BlobbX<25) {
+          if (BlobbX < 25) {
               //Blobb
               noFill();
               rect(400+BlobbX-25,250,50,50);
@@ -132,7 +132,7 @@
               ellipse(400+BlobbX-11,271,10,10);
           }
               
-          if (BlobbX>375) {
+          if (BlobbX > 375) {
               //Blobb
               noFill();
               rect(-400+BlobbX-25,250,50,50);
@@ -174,7 +174,7 @@
           points++;
           increaseCharge++;
           
-          if (increaseCharge>1000) {
+          if (increaseCharge > 1000) {
               increaseCharge = 0;
               laddahastihet++;
               println("level up");
