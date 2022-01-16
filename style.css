@@ -42,9 +42,6 @@ a:hover {
 .primaryColor {
   color: var(--primaryColor);
 }
-.primaryDarkColor {
-  color: var(--primaryDarkColor);
-}
 
 /* titles */
 .xlTitle {
@@ -157,9 +154,6 @@ a:hover {
 .navCol li + li {
   padding-left: 32px;
 }
-
-
-
 
 .center {
     margin: auto;
