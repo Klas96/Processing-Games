@@ -25,6 +25,9 @@ body {
   color: var(--baseColor);
   line-height: normal;
   background-color: rgb(20, 20, 20);
+  margin: auto;
+  text-align: center;
+
 }
 
 ul {
