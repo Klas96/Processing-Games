@@ -20,7 +20,6 @@ The other player uses arrow keys to avoid the drops.
 
 ## TODO
 
-Rescale games.
 Fix bugs in Boll upp och ner and Drops
 Add more Games
 fix loading .pde instead of pase in HTMl

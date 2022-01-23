@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Games - Drop</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body>
+
+
+    <!-- ================================
+    Start Navigation Bar
+    ================================= -->
+    <header>
+        <div class="headerCol">
+          <div class="container-fluid">
+            <div class="row align-items-center">
+              <div class="col">
+                <div class="navCollapseCol">
+                  <div class="navCol">
+                    <ul>
+                      <li><a href="index.html">Mustachio</a></li>
+                      <li><a href="drop.html">Drop</a></li>
+                      <li><a href="BallUppAndDown.html">Ball Upp and Down</a></li>
+                      <li><a href="aquarium.html">Aquarium</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- ================================
+      End Navigation Bar
+      ================================= -->
+      <div class="content"></div>
+        <h1>Aquarium</h1>
+        <p>A Litle Nice Aquarium With Fish Siming</p>
+        <script type="application/processing">
+          
+          xSize = 800;
+          ySize = 800;
+
+          void setup() {
+            size(xSize, ySize);
+          }
+
+          var drawFish = function(centerX,centerY,bodyLength,bodyHeight, bodyColor,eyesize){
+                  centerX = centerX % xSize;
+                  noStroke();
+                  fill(bodyColor[0], bodyColor[1], bodyColor[2]);
+                  
+                  // body
+                  ellipse(centerX, centerY, bodyLength, bodyHeight);
+
+                  // tail
+                  var tailWidth = bodyLength/4;
+                  var tailHeight = bodyHeight/2;
+                  triangle(centerX-bodyLength/2, centerY,
+                           centerX-bodyLength/2-tailWidth, centerY-tailHeight,
+                           centerX-bodyLength/2-tailWidth, centerY+tailHeight);
+
+                  // eye
+                  fill(33, 33, 33);
+                  ellipse(centerX+bodyLength/4, centerY, bodyHeight/eyesize, bodyHeight/eyesize);             
+          };
+
+          x = 0
+
+          draw = function() {
+            background(89, 216, 255);
+
+            x++;
+
+            //x = x%300
+
+            blue = [34, 78, 232]
+            orange = [134, 28, 32]
+            green = [34, 278, 32]
+
+            drawFish(234*2+x, 213*2, 80*2, 33*2, blue ,26*2);
+            drawFish(234*2+x*2, 130*2, 31*2, 47*2, red, 2*2);
+            drawFish(320*2+x, 209*2, 21*2, 42*2, blue, 6);
+            drawFish(106*2+x*0.5, 225*2, 64*2, 66*2, green, 3*2);
+            drawFish(296*2+x, 357*2, 22*2, 21*2, blue, 2*2);
+            drawFish(68*2+x, 151*2, 23*2, 57*2, green, 3*2);
+            drawFish(169*2+x, 361*2, 65*2, 18*2, green, 1*2);
+            drawFish(360*2+x*2, 129*2, 34*2, 55*2, red, 2*2);
+          }
+        </script>
+        <canvas> </canvas>
+    </div>
+    </body>
+</html>
