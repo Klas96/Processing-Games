@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Games - Drop</title>
+        <title>Games - Aquarium</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
         <link href="style.css" rel="stylesheet">
     </head>
@@ -75,18 +75,21 @@
 
             //x = x%300
 
+            //TODO Random speeds
+            //Coler background
+
             blue = [34, 78, 232]
             orange = [134, 28, 32]
             green = [34, 278, 32]
 
-            drawFish(234*2+x, 213*2, 80*2, 33*2, blue ,26*2);
-            drawFish(234*2+x*2, 130*2, 31*2, 47*2, red, 2*2);
-            drawFish(320*2+x, 209*2, 21*2, 42*2, blue, 6);
-            drawFish(106*2+x*0.5, 225*2, 64*2, 66*2, green, 3*2);
-            drawFish(296*2+x, 357*2, 22*2, 21*2, blue, 2*2);
-            drawFish(68*2+x, 151*2, 23*2, 57*2, green, 3*2);
-            drawFish(169*2+x, 361*2, 65*2, 18*2, green, 1*2);
-            drawFish(360*2+x*2, 129*2, 34*2, 55*2, red, 2*2);
+            drawFish(466+x, 426, 160, 66, blue ,52);
+            drawFish(250*2+x*2, 100, 31*2, 47*2, red, 4);
+            drawFish(650+x, 209*2, 42, 42*2, blue, 6);
+            drawFish(300+x*0.5, 225*2, 64*2, 66*2, green, 6);
+            drawFish(500+x, 357*2, 44, 21*2, blue, 4);
+            drawFish(150+x, 151*2, 46, 57*2, green, 6);
+            drawFish(300+x, 361*2, 65*2, 18*2, green, 2);
+            drawFish(700+x*2, 200, 68, 110, red, 4);
           }
         </script>
         <canvas> </canvas>
