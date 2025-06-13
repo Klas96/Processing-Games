@@ -184,3 +184,68 @@ a:hover {
     padding: 10px;
   }
 
+/* Styles for Add Game Section */
+#addGameSection {
+    background-color: #353535; /* Similar to header */
+    color: var(--baseColor);
+    padding: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    text-align: left; /* Align text to the left within this section */
+}
+
+#addGameSection h2 {
+    font-family: var(--titleFont);
+    color: var(--primaryColor);
+    text-align: center; /* Center the heading of this section */
+    margin-bottom: 20px;
+}
+
+#addGameSection label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: var(--medium);
+}
+
+#addGameSection input[type="text"],
+#addGameSection textarea {
+    width: 100%; /* Make input fields take full width of their container */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #292424; /* Darker background for inputs */
+    color: var(--baseColor);
+    font-family: var(--baseFont);
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+#addGameSection button {
+    background-color: var(--primaryColor);
+    color: var(--primaryDarkColor); /* Text color that contrasts with primaryColor */
+    border: none;
+    padding: 10px 20px;
+    font-family: var(--titleFont);
+    font-weight: var(--bold);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block; /* Make button a block to allow margin auto for centering */
+    margin: 0 auto; /* Center the button */
+}
+
+#addGameSection button:hover {
+    background-color: var(--primaryHoverColor);
+}
+
+#addGameStatus {
+    margin-top: 15px;
+    font-weight: var(--medium);
+    text-align: center; /* Center status messages */
+}
+
+#addGameStatus a {
+    color: var(--primaryHoverColor); /* Make links stand out */
+    text-decoration: underline;
+}

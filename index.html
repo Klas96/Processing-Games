@@ -39,6 +39,21 @@
       <div class="row align-items-center"></div>
         <h1>Mustachio</h1>
         <p>A fun Game about a fun dude jumping</p>
+
+    <div id="addGameSection" style="margin: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 5px;">
+        <h2>Add New Game</h2>
+        <div>
+            <label for="gameNameInput">Game Name:</label><br>
+            <input type="text" id="gameNameInput" name="gameName" style="width: 80%; margin-bottom: 10px;">
+        </div>
+        <div>
+            <label for="gameCodeInput">Game Code (Processing.js):</label><br>
+            <textarea id="gameCodeInput" name="gameCode" rows="10" style="width: 80%; margin-bottom: 10px;"></textarea>
+        </div>
+        <button id="addGameButton">Add Game</button>
+        <div id="addGameStatus" style="margin-top: 10px;"></div>
+    </div>
+
         <script type="application/processing">
             var h = 0;
             var k = 0;
@@ -156,5 +171,60 @@
         </script>
         <canvas> </canvas>
     </div>
+
+    <script>
+        const gameNameInput = document.getElementById('gameNameInput');
+        const gameCodeInput = document.getElementById('gameCodeInput');
+        const addGameButton = document.getElementById('addGameButton');
+        const addGameStatus = document.getElementById('addGameStatus');
+
+        addGameButton.addEventListener('click', async () => {
+            const gameName = gameNameInput.value.trim();
+            const gameCode = gameCodeInput.value.trim();
+
+            if (!gameName) {
+                addGameStatus.textContent = 'Please enter a game name.';
+                addGameStatus.style.color = 'red';
+                return;
+            }
+
+            if (!gameCode) {
+                addGameStatus.textContent = 'Please enter game code.';
+                addGameStatus.style.color = 'red';
+                return;
+            }
+
+            addGameStatus.textContent = 'Adding game...';
+            addGameStatus.style.color = 'black';
+
+            try {
+                const response = await fetch('/add_game', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        game_name: gameName,
+                        game_script_content: gameCode,
+                    }),
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    addGameStatus.innerHTML = result.message + (result.file_path ? ` You can access it at <a href='/${result.file_path}' target='_blank'>${result.file_path}</a>` : '');
+                    addGameStatus.style.color = 'green';
+                    gameNameInput.value = ''; // Clear input fields on success
+                    gameCodeInput.value = '';
+                } else {
+                    addGameStatus.textContent = `Error: ${result.detail || result.error || 'Unknown error'}`; // FastAPI errors are often in result.detail
+                    addGameStatus.style.color = 'red';
+                }
+            } catch (error) {
+                addGameStatus.textContent = `Network error: ${error.message}`;
+                addGameStatus.style.color = 'red';
+            }
+        });
+    </script>
     </body>
 </html>
