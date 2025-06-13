@@ -25,6 +25,7 @@
                       <li><a href="BallUppAndDown.html">Ball Upp and Down</a></li>
                       <li><a href="aquarium.html">Aquarium</a></li>
                       <li><a href="space_shooter.html">Space Shooter</a></li>
+                      <li><a href="todo.html">To-Do List</a></li>
                     </ul>
                   </div>
                 </div>
@@ -39,6 +40,10 @@
       <div class="row align-items-center"></div>
         <h1>Mustachio</h1>
         <p>A fun Game about a fun dude jumping</p>
+        <div id="gameGenerationControls">
+          <input type="text" id="promptInput" placeholder="Describe the game you want to create...">
+          <button id="generateGameButton">Generate Game</button>
+        </div>
         <script type="application/processing">
             var h = 0;
             var k = 0;
@@ -156,5 +161,26 @@
         </script>
         <canvas> </canvas>
     </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const generateButton = document.getElementById('generateGameButton');
+        if (generateButton) {
+          generateButton.addEventListener('click', function() {
+            const promptInput = document.getElementById('promptInput');
+            if (promptInput) {
+              const promptValue = promptInput.value;
+              console.log("Game prompt:", promptValue);
+              alert("Game prompt entered: " + promptValue);
+            } else {
+              console.error("Error: Prompt input field not found.");
+              alert("Error: Prompt input field not found.");
+            }
+          });
+        } else {
+          console.error("Error: Generate game button not found.");
+          alert("Error: Generate game button not found.");
+        }
+      });
+    </script>
     </body>
 </html>
