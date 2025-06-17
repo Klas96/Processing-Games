@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Games - Top Down Game</title>
+    <link href="style.css" rel="stylesheet">
+    <script src="processing.min.js"></script>
+</head>
+<body>
+
+    <!-- ================================
+    Start Navigation Bar
+    ================================= -->
+    <header>
+        <div class="headerCol">
+          <div class="container-fluid">
+            <div class="row align-items-center">
+              <div class="col">
+                <div class="navCollapseCol">
+                  <div class="navCol">
+                    <ul>
+                      <li><a href="index.html">Mustachio</a></li>
+                      <li><a href="drop.html">Drop</a></li>
+                      <li><a href="BallUppAndDown.html">Ball Upp and Down</a></li>
+                      <li><a href="aquarium.html">Aquarium</a></li>
+                      <li><a href="space_shooter.html">Space Shooter</a></li>
+                      <li><a href="todo.html">To-Do List</a></li>
+                      <li><a href="TopDownGame.html">Adventure Game</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- ================================
+      End Navigation Bar
+      ================================= -->
+
+    <h1>Top Down Game</h1>
+    <p>A simple adventure game where you control a character to collect all coins while avoiding obstacles.</p>
+
+    <script type="application/processing" data-processing-target="canvasid">
+// Player variables
+float playerX, playerY;
+float playerSpeed = 3; // Adjusted speed slightly
+int playerSize = 20;
+color playerColor;
+
+// Canvas size
+int canvasWidth = 600;
+int canvasHeight = 400;
+
+// Game State
+int coinsCollected = 0;
+int totalCoins = 0;
+boolean gameOver = false;
+
+// Obstacles
+class Obstacle {
+  float x, y, w, h;
+  Obstacle(float _x, float _y, float _w, float _h) {
+    x = _x; y = _y; w = _w; h = _h;
+  }
+  void display() {
+    fill(100); // Dark gray for obstacles
+    rectMode(CORNER);
+    rect(x, y, w, h);
+  }
+  boolean collidesWith(float px, float py, int psize) {
+    // Check collision between player (square bounding box) and obstacle (rectangle)
+    float playerLeft = px - psize/2;
+    float playerRight = px + psize/2;
+    float playerTop = py - psize/2;
+    float playerBottom = py + psize/2;
+
+    return (playerRight > x && playerLeft < x + w && playerBottom > y && playerTop < y + h);
+  }
+}
+ArrayList<Obstacle> obstacles;
+
+// Coins
+class Coin {
+  float x, y;
+  int size = 10;
+  boolean collected = false;
+  Coin(float _x, float _y) {
+    x = _x; y = _y;
+  }
+  void display() {
+    if (!collected) {
+      fill(255, 223, 0); // Yellow for coins
+      ellipse(x, y, size, size);
+    }
+  }
+  boolean collidesWith(float px, float py, int psize) {
+    if (collected) return false;
+    return dist(px, py, x, y) < psize/2 + size/2;
+  }
+}
+ArrayList<Coin> coins;
+
+void setup() {
+  size(canvasWidth, canvasHeight);
+  playerX = width / 2;
+  playerY = height - playerSize*2; // Start player lower
+  playerColor = color(255, 0, 0); // Red
+
+  // Initialize Obstacles
+  obstacles = new ArrayList<Obstacle>();
+  obstacles.add(new Obstacle(100, 100, 50, 150));
+  obstacles.add(new Obstacle(300, 50, 150, 50));
+  obstacles.add(new Obstacle(200, 250, 200, 50));
+  obstacles.add(new Obstacle(450, 150, 50, 100));
+
+
+  // Initialize Coins
+  coins = new ArrayList<Coin>();
+  // Ensure coins don't spawn inside obstacles (simple check, can be improved)
+  coins.add(new Coin(50, 50));
+  coins.add(new Coin(550, 350));
+  coins.add(new Coin(50, 350));
+  coins.add(new Coin(550, 50));
+  coins.add(new Coin(300, 150)); // Near an obstacle, but should be clear
+
+  totalCoins = coins.size();
+}
+
+void draw() {
+  if (gameOver) {
+    background(0, 150, 0); // Greenish background for win
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(50);
+    text("You Win!", width/2, height/2);
+    return; // Stop further drawing/logic
+  }
+
+  background(200); // Light gray background
+
+  // Store previous position
+  float prevX = playerX;
+  float prevY = playerY;
+
+  // Handle input
+  if (keyPressed) {
+    if (keyCode == UP) {
+      playerY -= playerSpeed;
+    }
+    if (keyCode == DOWN) {
+      playerY += playerSpeed;
+    }
+    if (keyCode == LEFT) {
+      playerX -= playerSpeed;
+    }
+    if (keyCode == RIGHT) {
+      playerX += playerSpeed;
+    }
+  }
+
+  // Constrain player to canvas boundaries first
+  playerX = constrain(playerX, playerSize / 2, width - playerSize / 2);
+  playerY = constrain(playerY, playerSize / 2, height - playerSize / 2);
+
+  // Check for obstacle collisions (X-axis)
+  boolean collisionX = false;
+  for (Obstacle obs : obstacles) {
+    if (obs.collidesWith(playerX, prevY, playerSize)) {
+      collisionX = true;
+      break;
+    }
+  }
+  if (collisionX) {
+    playerX = prevX; // Revert X movement
+  }
+
+  // Check for obstacle collisions (Y-axis)
+  boolean collisionY = false;
+  for (Obstacle obs : obstacles) {
+    if (obs.collidesWith(prevX, playerY, playerSize)) { // Use prevX for this check
+      collisionY = true;
+      break;
+    }
+  }
+  if (collisionY) {
+    playerY = prevY; // Revert Y movement
+  }
+
+  // Re-check for obstacle collisions if both axes moved (cornering case)
+  // This is a simplified model; more robust physics would handle this better.
+  // For this game, separate axis collision is often good enough.
+  // If still colliding after axis-specific reversion, it implies being stuck in a corner or a too-tight space.
+  // A simple solution: if still colliding, revert both to prevX, prevY.
+  boolean stillColliding = false;
+  for (Obstacle obs : obstacles) {
+    if (obs.collidesWith(playerX, playerY, playerSize)) {
+        stillColliding = true;
+        break;
+    }
+  }
+  if (stillColliding) {
+    playerX = prevX;
+    playerY = prevY;
+  }
+
+
+  // Draw Obstacles
+  for (Obstacle obs : obstacles) {
+    obs.display();
+  }
+
+  // Draw and Check Coins
+  for (int i = coins.size() - 1; i >= 0; i--) {
+    Coin coin = coins.get(i);
+    coin.display();
+    if (coin.collidesWith(playerX, playerY, playerSize)) {
+      coin.collected = true; // Mark as collected
+      // coins.remove(i); // Alternative: actually remove, then totalCoins would be coins.size()
+      coinsCollected++;
+    }
+  }
+
+  // Remove collected coins (if not using the boolean flag approach for display)
+  // This loop is if you chose to remove from list vs. flag
+  // for (int i = coins.size() - 1; i >= 0; i--) {
+  //   if (coins.get(i).collected) {
+  //     coins.remove(i);
+  //   }
+  // }
+
+
+  // Draw player
+  fill(playerColor);
+  ellipse(playerX, playerY, playerSize, playerSize);
+
+  // Display UI
+  fill(0);
+  textAlign(LEFT, TOP);
+  textSize(16);
+  text("Coins left: " + (totalCoins - coinsCollected), 10, 10);
+
+  // Check for game over
+  if (coinsCollected == totalCoins) {
+    gameOver = true;
+  }
+}
+    </script>
+    <canvas id="canvasid"></canvas>
+
+</body>
+</html>
