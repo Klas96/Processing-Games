@@ -3,12 +3,16 @@ from pydantic import BaseModel
 import uvicorn
 import re
 import os
+import google.generativeai as genai
 
 app = FastAPI()
 
 class Game(BaseModel):
     game_name: str
     game_script_content: str
+
+class GamePrompt(BaseModel):
+    prompt: str
 
 def sanitize_filename(name: str) -> str:
     """Sanitizes a string to be used as a filename."""
@@ -23,13 +27,50 @@ def sanitize_filename(name: str) -> str:
         name = "untitled_game"
     return name + ".html"
 
+@app.post("/generate_game")
+async def generate_game_endpoint(prompt_data: GamePrompt):
+    try:
+        # Configure the generative AI model
+        genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+        model = genai.GenerativeModel('gemini-1.5-flash')
+
+        # Generate game code
+        response = model.generate_content(f"Generate a simple game in Processing.js based on the following prompt: {prompt_data.prompt}")
+        game_code = response.text
+
+        # Extract game name from the prompt
+        game_name = " ".join(prompt_data.prompt.split()[:3]) # Use first 3 words of prompt as name
+        filename = sanitize_filename(game_name)
+
+        if os.path.exists(filename):
+            raise HTTPException(status_code=409, detail=f"File '{filename}' already exists.")
+
+        html_content = f"""<!DOCTYPE html>
+<html>
+<head>
+    <title>{game_name}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <h1>{game_name}</h1>
+    <script type="application/processing">
+    {game_code}
+    </script>
+    <canvas></canvas>
+</body>
+</html>"""
+
+        with open(filename, "w") as f:
+            f.write(html_content)
+        return {"message": f"Game '{game_name}' created successfully as '{filename}'", "file_path": filename}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.post("/add_game")
 async def add_game_endpoint(game: Game):
     if not game.game_name:
-        # Return an error or use a default name if game_name is not provided
-        # For this implementation, let's use a default name via sanitize_filename
-        # Or, alternatively, raise an HTTPException:
-        # raise HTTPException(status_code=400, detail="Game name is required.")
         pass # Handled by sanitize_filename default
 
     filename = sanitize_filename(game.game_name)

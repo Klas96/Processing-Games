@@ -39,12 +39,18 @@
         <h1>Boll Upp och Ner</h1>
         <p>En Boll som Hoppar Upp och Ner</p>
         <script type="application/processing">
-            var y =0;
-            var k=1;
-            var x=0;
+            // Ball physics variables
+            var ballX = 200;
+            var ballY = 100;  // Start position above ground
+            var ballVelY = 0; // Vertical velocity
+            var ballRadius = 17.5;
+            var groundY = 200; // Ground level (on grass surface)
+            var gravity = 0.5;
+            var bounceDamping = 0.7;
+            
+            // Other game variables
+            var x = 0;
             var move = 0;
-            var bollstandard = 200;
-            var jumpHight = -62;
             var grass = loadImage("GrassBlock.png");
             var xCloud = 0;
             
@@ -53,27 +59,19 @@
             }
 
             void keyPressed() {
-
                 if (keyCode === LEFT) {
-                    x=x-3;
+                    x = x - 3;
                 }
-
                 if (keyCode === RIGHT) {
-                    x=x+3;
+                    x = x + 3;
                 }
             }
 
             var rektangel = function(xposition,yposition,rektbredd,rektlangd,rotera) {
                 fill(17, 219, 24);
                 rect(xposition+move,yposition,rektbredd,rektlangd);
-                if(((200+x)>xposition+move) && ((xposition+rektbredd+move)>(200+x))&&((yposition)<(bollstandard-y+35/2))&&k<0){
-                    bollstandard = yposition-rektlangd-35/2;
-                    k=1;
-                    y=jumpHight;
-                    println(yposition);
-                    println(bollstandard-y+35/2);
-                }
-
+                            // Removed old collision system
+                // ballVelY = 0;
                 //clouds
                 noStroke();
                 fill(255, 255, 255);
@@ -92,24 +90,32 @@
             
             draw = function() {
                 move -= 1;
-                image(grass,0,200,50,50);
                 background(33, 122, 255);
-                //rect(0,200+62+35/2,415,159);
                 rektangel(376,237,100,60,0);
                 
+                // Update ball physics
+                ballVelY += gravity;  // Apply gravity
+                ballY += ballVelY;    // Update position
+                
+                // Check ground collision
+                if (ballY + ballRadius >= groundY) {
+                    ballY = groundY - ballRadius;  // Place ball on ground
+                    ballVelY = -ballVelY * bounceDamping;  // Bounce with damping
+                    
+                    // Stop bouncing if velocity is too low
+                    if (Math.abs(ballVelY) < 1) {
+                        ballVelY = 0;
+                    }
+                }
+                
+                // Draw ball
                 fill(255, 0, 0);
                 stroke(0,0,0);
-                ellipse(200+x, bollstandard-y, 35, 35);
-                y = y+k;
+                ellipse(ballX + x, ballY, 35, 35);
+                
+                // Draw ground
                 for(var flytta = 0; 20>flytta; flytta++) {
-                    image(grass,92*flytta,207,93,244);
-                }
-                if(y>0){
-                    k-=1;    
-                }
-
-                if(y<jumpHight){
-                    k=k+2;
+                    image(grass,92*flytta,156,93,244);
                 }
             };
         </script>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game Generator</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Game Generator</h1>
+        <p>Enter a prompt for the game you want to generate.</p>
+        <input type="text" id="gamePromptInput" placeholder="e.g., a space shooter game">
+        <button id="generateGameButton">Generate Game</button>
+        <div id="generationStatus"></div>
+    </div>
+    <script>
+        const gamePromptInput = document.getElementById('gamePromptInput');
+        const generateGameButton = document.getElementById('generateGameButton');
+        const generationStatus = document.getElementById('generationStatus');
+
+        generateGameButton.addEventListener('click', async () => {
+            const prompt = gamePromptInput.value.trim();
+
+            if (!prompt) {
+                generationStatus.textContent = 'Please enter a prompt.';
+                generationStatus.style.color = 'red';
+                return;
+            }
+
+            generationStatus.textContent = 'Generating game...';
+            generationStatus.style.color = 'black';
+
+            try {
+                const response = await fetch('/generate_game', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        prompt: prompt,
+                    }),
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    generationStatus.innerHTML = `Game generated! You can access it at <a href='/${result.file_path}' target='_blank'>${result.file_path}</a>`;
+                    generationStatus.style.color = 'green';
+                    gamePromptInput.value = '';
+                } else {
+                    generationStatus.textContent = `Error: ${result.detail || result.error || 'Unknown error'}`;
+                    generationStatus.style.color = 'red';
+                }
+            } catch (error) {
+                generationStatus.textContent = `Network error: ${error.message}`;
+                generationStatus.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>

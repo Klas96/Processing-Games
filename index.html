@@ -1,226 +1,69 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Games - Mustachio</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
-        <link href="style.css" rel="stylesheet">
-
-    </head>
-    <body>
-
-
-    <!-- ================================
-    Start Navigation Bar
-    ================================= -->
-    <header>
-        <div class="headerCol">
-          <div class="container-fluid">
-            <div class="row align-items-center">
-              <div class="col">
-                <div class="navCollapseCol">
-                  <div class="navCol">
-                    <ul>
-                      <li><a href="index.html">Mustachio</a></li>
-                      <li><a href="drop.html">Drop</a></li>
-                      <li><a href="BallUppAndDown.html">Ball Upp and Down</a></li>
-                      <li><a href="aquarium.html">Aquarium</a></li>
-                      <li><a href="space_shooter.html">Space Shooter</a></li>
-                      <li><a href="TopDownGame.html">Adventure Game</a></li>
-                      <li><a href="todo.html">To-Do List</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+<head>
+    <title>Game Generator</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="headerCol">
+        <div class="navCol">
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="tectonic.html">Tectonic</a></li>
+            </ul>
         </div>
-      </header>
-      <!-- ================================
-      End Navigation Bar
-      ================================= -->
-      <div class="row align-items-center"></div>
-        <h1>Mustachio</h1>
-        <h2>Add New Game</h2>
-        <div>
-            <label for="gameNameInput">Game Name:</label><br>
-            <input type="text" id="gameNameInput" name="gameName" style="width: 80%; margin-bottom: 10px;">
-        </div>
-        <button id="addGameButton">Add Game</button>
-        <div id="addGameStatus" style="margin-top: 10px;"></div>
     </div>
-
-        <p>A fun Game about a fun dude jumping</p>
-        <script type="application/processing">
-            var h = 0;
-            var k = 0;
-            var x = 0;
-            var Level = 1;
-            var bredd = 0;
-            var move = 0;
-            var hastighet = 2;
-            var stageLength = 6800;
-            var points = (move + stageLength * (Level-2));
-            
-
-            void setup() {
-              size(900, 800);   
-            }
-            
-            
-            var GameOver = function(recX,recY,recBredd,recLangd){
-                rect(recX-move,recY,recBredd,recLangd);
-                if(recX-move<mouseX+25*2-bredd/2+bredd && mouseX-25*2-bredd/2<recX-move+recBredd && recY < 275*2-25*2-h-bredd/2 + 50*2+bredd && 275*2-25*2-h-bredd/2<recY+recLangd){
-                    
-                    println("GAME OVER");
-                    fill(0,0,0);
-                    textSize(50*2);
-                    text("GAME OVER",100,100);
-                    text("Points "+(move+stageLength * (Level-1)),100, 200);
-                    fill(255,0,0);
-                    GameOver = 1;
-                }
-            };
-            
-            draw = function() {
-                background(14, 116, 204);
-                //clouds
-                noStroke();
-                    fill(255, 255, 255);
-                    ellipse(x + 20, 200,115*2,55*2);
-                    ellipse(x + 34, 96*2,62*2,27*2);
-                    ellipse(x + 18,160,50*2,35*2);
-                    ellipse(x + 300*2,80*2,43*2,30*2);
-                    ellipse(x + 317*2,67*2,70*2,50*2);
-                    ellipse(x + 347*2,77*2,80*2,30*2);
-                    x++;
-                    if (x > 500*2){x = -400*2; }
-                stroke(0, 0, 0);
-                fill(37*2, 224*2, 0);
-                rect(-15*2,600,1010,445*2);
-                
-                //Jump
-                if(keyPressed){
-                    h = h+40;
-                    bredd += 4;
-                    k++;
-                }
-                
-                if (h<0){
-                   h = 0;
-                }
-                
-                if(275*2-bredd/4-h<0){
-                    h = 275*2-bredd/4;
-                }
-                
-                //Gravety
-                h = h - 2;
-                bredd -= 0.6;
-                if (bredd<0){
-                    bredd = 0;
-                }
-
-                //Blobb
-                noFill();
-                rect(mouseX-50-bredd/2,275*2-25*2-h-bredd/2,100+bredd,100+bredd);
-                fill(252, 0, 252);
-                ellipse(mouseX, 550-h,100+bredd,100+bredd);
-                fill(0,0,0);
-                ellipse(mouseX+10*2,284*2-h,20*2,26);
-                ellipse(mouseX-10*2,284*2-h,20*2,20);
-                ellipse(mouseX+13*2,271*2-h,10*2,20);
-                fill(173, 0, 0);
-                ellipse(mouseX+-11*2,271*2-h,20,20);
-                noStroke();
-                //stage
-                stroke(0, 0, 0);
-                fill(255, 0, 0);
-                GameOver(434*2,492,80,106);
-                GameOver(599*2,282,80,106);
-                GameOver(770*2,420,80,108);
-                GameOver(890*2,202,80,106);
-                GameOver(1074*2,178*2,75*2,124*2);
-                GameOver(1296,108,61,92*2);
-                GameOver(1413*2,146*2,61*2,92*2);
-                GameOver(1691*2,100*2,49*2,118*2);
-                GameOver(1891*2,146*2,49*2,118*2);
-                GameOver(2091*2,186*2,49*2,118*2);
-                GameOver(2291*2,146*2,49*2,118*2);
-                GameOver(2491*2,46*2,49*2,118*2);
-                GameOver(2691*2,146*2,100*2,118*2);
-                GameOver(2890*2,26*2,49*2,70*2);
-                GameOver(3050*2,116*2,49*2,118*2);
-                GameOver(3250*2,146*2,49*2,118*2);
-                move = move + hastighet;
-
-                if(move > stageLength){
-                    hastighet++;
-                    Level++;
-                    move = 0;
-                    println("Level " + Level);
-                }
-
-                fill(0,0,0);
-                textSize(24);
-                text("Points "+ (move+stageLength * (Level-1)),20,20);
-            };
-        </script>
-        <canvas> </canvas>
+    
+    <div class="container" style="margin-top: 100px;">
+        <h1>Game Generator</h1>
+        <p>Enter a prompt for the game you want to generate.</p>
+        <input type="text" id="gamePromptInput" placeholder="e.g., a space shooter game">
+        <button id="generateGameButton">Generate Game</button>
+        <div id="generationStatus"></div>
     </div>
-
     <script>
-        const gameNameInput = document.getElementById('gameNameInput');
-        const gameCodeInput = document.getElementById('gameCodeInput');
-        const addGameButton = document.getElementById('addGameButton');
-        const addGameStatus = document.getElementById('addGameStatus');
+        const gamePromptInput = document.getElementById('gamePromptInput');
+        const generateGameButton = document.getElementById('generateGameButton');
+        const generationStatus = document.getElementById('generationStatus');
 
-        addGameButton.addEventListener('click', async () => {
-            const gameName = gameNameInput.value.trim();
-            const gameCode = gameCodeInput.value.trim();
+        generateGameButton.addEventListener('click', async () => {
+            const prompt = gamePromptInput.value.trim();
 
-            if (!gameName) {
-                addGameStatus.textContent = 'Please enter a game name.';
-                addGameStatus.style.color = 'red';
+            if (!prompt) {
+                generationStatus.textContent = 'Please enter a prompt.';
+                generationStatus.style.color = 'red';
                 return;
             }
 
-            if (!gameCode) {
-                addGameStatus.textContent = 'Please enter game code.';
-                addGameStatus.style.color = 'red';
-                return;
-            }
-
-            addGameStatus.textContent = 'Adding game...';
-            addGameStatus.style.color = 'black';
+            generationStatus.textContent = 'Generating game...';
+            generationStatus.style.color = 'black';
 
             try {
-                const response = await fetch('/add_game', {
+                const response = await fetch('/generate_game', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        game_name: gameName,
-                        game_script_content: gameCode,
+                        prompt: prompt,
                     }),
                 });
 
                 const result = await response.json();
 
                 if (response.ok) {
-                    addGameStatus.innerHTML = result.message + (result.file_path ? ` You can access it at <a href='/${result.file_path}' target='_blank'>${result.file_path}</a>` : '');
-                    addGameStatus.style.color = 'green';
-                    gameNameInput.value = ''; // Clear input fields on success
-                    gameCodeInput.value = '';
+                    generationStatus.innerHTML = `Game generated! You can access it at <a href='/${result.file_path}' target='_blank'>${result.file_path}</a>`;
+                    generationStatus.style.color = 'green';
+                    gamePromptInput.value = '';
                 } else {
-                    addGameStatus.textContent = `Error: ${result.detail || result.error || 'Unknown error'}`; // FastAPI errors are often in result.detail
-                    addGameStatus.style.color = 'red';
+                    generationStatus.textContent = `Error: ${result.detail || result.error || 'Unknown error'}`;
+                    generationStatus.style.color = 'red';
                 }
             } catch (error) {
-                addGameStatus.textContent = `Network error: ${error.message}`;
-                addGameStatus.style.color = 'red';
+                generationStatus.textContent = `Network error: ${error.message}`;
+                generationStatus.style.color = 'red';
             }
         });
     </script>
-    </body>
+</body>
 </html>
