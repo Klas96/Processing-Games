@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mooves - Training Log & Rewards</title>
+    <link href="style.css" rel="stylesheet">
+    <style>
+        .game-info {
+            background-color: #f8f9fa;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .download-section {
+            background-color: #e8f5e8;
+            border: 2px solid #28a745;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .features {
+            background-color: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .apk-link {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+        .apk-link:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="headerCol">
+        <div class="navCol">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="drop.html">Drop</a></li>
+                <li><a href="BallUppAndDown.html">Ball Upp and Down</a></li>
+                <li><a href="aquarium.html">Aquarium</a></li>
+                <li><a href="TopDownGame.html">Adventure Game</a></li>
+                <li><a href="space_shooter.html">Space Shooter</a></li>
+                <li><a href="todo.html">To-Do List</a></li>
+                <li><a href="tectonic.html">Tectonic</a></li>
+                <li><a href="truefalsegame.html">True/False Game</a></li>
+                <li><a href="mooves.html">Mooves</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="container" style="margin-top: 100px;">
+        <h1 class="xlTitle primaryColor">Mooves</h1>
+        
+        <div style="max-width: 800px; margin: 0 auto; text-align: left; padding: 20px;">
+            <h2 class="lgTitle primaryColor">About the App</h2>
+            <p class="smText">Mooves is a training log app that helps you track your running sessions and earn QR code rewards when you reach your goals. Log your training, set distance and duration goals, and get rewarded with QR codes when you achieve them!</p>
+            
+            <div class="features">
+                <h3>✨ Features</h3>
+                <ul style="list-style-type: disc; margin-left: 20px;">
+                    <li><strong>Training Log:</strong> Log your running sessions with distance, duration, and notes</li>
+                    <li><strong>Goal Setting:</strong> Set running goals for distance, duration, and time period (daily/weekly/monthly)</li>
+                    <li><strong>Health Connect Integration:</strong> Automatically sync running activities from Health Connect (Android)</li>
+                    <li><strong>QR Rewards:</strong> Generate QR codes when you reach your goals</li>
+                    <li><strong>Goal Tracking:</strong> Automatic goal checking based on your logged activities</li>
+                    <li><strong>Local Storage:</strong> All your training data stored locally on your device</li>
+                    <li><strong>Modern UI:</strong> Beautiful, intuitive interface with smooth animations</li>
+                </ul>
+            </div>
+            
+            <div class="game-info">
+                <h3>🎮 How to Use</h3>
+                <ol style="list-style-type: decimal; margin-left: 20px;">
+                    <li>Create an account or sign in</li>
+                    <li>Set your running goals in the Profile tab (distance, duration, period)</li>
+                    <li>Connect Health Connect to automatically sync activities (Android)</li>
+                    <li>Log training sessions manually or let Health Connect sync them</li>
+                    <li>When you reach your goal, get a QR code reward!</li>
+                </ol>
+            </div>
+            
+            <div class="download-section">
+                <h3>📱 Download & Install</h3>
+                <p>Download the Android APK and install on your Android device:</p>
+                <a href="mooves.apk" class="apk-link" download>
+                    📲 Download Mooves APK
+                </a>
+                <p><small>Compatible with Android devices | Health Connect requires Android 14+ or Health Connect app installed</small></p>
+            </div>
+            
+            <div class="game-info">
+                <h3>🛠️ Technical Details</h3>
+                <ul style="list-style-type: disc; margin-left: 20px;">
+                    <li><strong>Platform:</strong> Flutter (Cross-platform mobile framework)</li>
+                    <li><strong>Target:</strong> Android APK</li>
+                    <li><strong>Health Integration:</strong> Health Connect API (Android)</li>
+                    <li><strong>Storage:</strong> Local storage via SharedPreferences</li>
+                    <li><strong>QR Generation:</strong> QR code generation for goal rewards</li>
+                    <li><strong>UI Framework:</strong> Material Design with custom theming</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
