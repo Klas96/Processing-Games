@@ -34,6 +34,21 @@ Download `truefalsegame.apk` and install on Android devices.
 ### QR Code Sharing
 The app supports offline card sharing through QR codes - no backend server required!
 
+## Mooves
+
+A Flutter-based training log app for tracking running sessions and earning QR code rewards. Features include:
+
+- **Training Log**: Log running sessions with distance, duration, and notes
+- **Goal Setting**: Set running goals for distance, duration, and time period (daily/weekly/monthly)
+- **Health Connect Integration**: Automatically sync running activities from Health Connect (Android 14+)
+- **QR Rewards**: Generate QR codes when you reach your goals
+- **Goal Tracking**: Automatic goal checking based on logged activities
+- **Local Storage**: All training data stored locally on device
+- **Modern UI**: Beautiful, intuitive interface with smooth animations
+
+### Installation
+Download `mooves.apk` and install on Android devices. Health Connect integration requires Android 14+ or the Health Connect app installed.
+
 ## TODO
 
 Fix bugs in Boll upp och ner and Drops

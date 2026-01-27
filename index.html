@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Game Generator</title>
+    <title>Games</title>
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
@@ -14,7 +14,6 @@
                 <li><a href="aquarium.html">Aquarium</a></li>
                 <li><a href="TopDownGame.html">Adventure Game</a></li>
                 <li><a href="space_shooter.html">Space Shooter</a></li>
-                <li><a href="todo.html">To-Do List</a></li>
                 <li><a href="tectonic.html">Tectonic</a></li>
                 <li><a href="truefalsegame.html">True/False Game</a></li>
                 <li><a href="mooves.html">Mooves</a></li>
@@ -23,55 +22,8 @@
     </div>
     
     <div class="container" style="margin-top: 100px;">
-        <h1>Game Generator</h1>
-        <p>Enter a prompt for the game you want to generate.</p>
-        <input type="text" id="gamePromptInput" placeholder="e.g., a space shooter game">
-        <button id="generateGameButton">Generate Game</button>
-        <div id="generationStatus"></div>
+        <h1>Games</h1>
+        <p>Welcome! Select a game from the navigation menu above to start playing.</p>
     </div>
-    <script>
-        const gamePromptInput = document.getElementById('gamePromptInput');
-        const generateGameButton = document.getElementById('generateGameButton');
-        const generationStatus = document.getElementById('generationStatus');
-
-        generateGameButton.addEventListener('click', async () => {
-            const prompt = gamePromptInput.value.trim();
-
-            if (!prompt) {
-                generationStatus.textContent = 'Please enter a prompt.';
-                generationStatus.style.color = 'red';
-                return;
-            }
-
-            generationStatus.textContent = 'Generating game...';
-            generationStatus.style.color = 'black';
-
-            try {
-                const response = await fetch('/generate_game', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        prompt: prompt,
-                    }),
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    generationStatus.innerHTML = `Game generated! You can access it at <a href='/${result.file_path}' target='_blank'>${result.file_path}</a>`;
-                    generationStatus.style.color = 'green';
-                    gamePromptInput.value = '';
-                } else {
-                    generationStatus.textContent = `Error: ${result.detail || result.error || 'Unknown error'}`;
-                    generationStatus.style.color = 'red';
-                }
-            } catch (error) {
-                generationStatus.textContent = `Network error: ${error.message}`;
-                generationStatus.style.color = 'red';
-            }
-        });
-    </script>
 </body>
 </html>
