@@ -24,9 +24,11 @@
         </div>
     </div>
 
-    <h1>Top Down Game</h1>
-    <p>A simple adventure game where you control a character to collect all coins while avoiding obstacles.</p>
-
+    <div class="game-page-header">
+        <h1>Adventure Game</h1>
+        <p>Collect all the coins while avoiding obstacles to win.</p>
+    </div>
+    <div class="game-canvas-wrapper">
     <script type="application/processing" data-processing-target="canvasid">
 // Player variables
 float playerX, playerY;
@@ -233,6 +235,9 @@ void draw() {
 }
     </script>
     <canvas id="canvasid"></canvas>
-
+    </div>
+    <div class="game-controls">
+        <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> Move
+    </div>
 </body>
 </html>
