@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Echoes of Elysium - Cyberpunk Space RPG</title>
+    <link href="style.css" rel="stylesheet">
+    <style>
+        .game-info {
+            background-color: #f8f9fa;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .download-section {
+            background-color: #e8f5e8;
+            border: 2px solid #28a745;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .features {
+            background-color: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .apk-link {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+        .apk-link:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="headerCol">
+        <div class="navCol">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="drop.html">Drop</a></li>
+                <li><a href="BallUppAndDown.html">Ball Upp and Down</a></li>
+                <li><a href="aquarium.html">Aquarium</a></li>
+                <li><a href="TopDownGame.html">Adventure Game</a></li>
+                <li><a href="space_shooter.html">Space Shooter</a></li>
+                <li><a href="tectonic.html">Tectonic</a></li>
+                <li><a href="truefalsegame.html">True/False Game</a></li>
+                <li><a href="mooves.html">Mooves</a></li>
+                <li><a href="echoes-of-elysium.html">Echoes of Elysium</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 100px;">
+        <h1 class="xlTitle primaryColor">Echoes of Elysium</h1>
+
+        <div style="max-width: 800px; margin: 0 auto; text-align: left; padding: 20px;">
+            <h2 class="lgTitle primaryColor">About the Game</h2>
+            <p class="smText">Echoes of Elysium is a top-down cyberpunk space RPG. Explore two maps, talk to mysterious characters with voiced dialogue, collect Aetherian Fragments, and battle the UEC Sentinel boss — all set to an atmospheric soundtrack.</p>
+
+            <div class="features">
+                <h3>✨ Features</h3>
+                <ul style="list-style-type: disc; margin-left: 20px;">
+                    <li><strong>Story &amp; NPCs:</strong> 5 characters with unique voiced dialogue via ElevenLabs TTS</li>
+                    <li><strong>Shooting:</strong> Tap to fire energy bolts at enemies</li>
+                    <li><strong>Fragment Collection:</strong> Find 3 Aetherian Fragments to unlock the portal on Map 1</li>
+                    <li><strong>Boss Fight:</strong> Face the UEC Sentinel on Map 2 — enters rage mode at low HP</li>
+                    <li><strong>Health Pickups:</strong> Green orbs scattered across both maps</li>
+                    <li><strong>Objective Tracker:</strong> On-screen HUD shows your current goal</li>
+                    <li><strong>Atmospheric Audio:</strong> Background music + SFX for footsteps, shooting, and portals</li>
+                </ul>
+            </div>
+
+            <div class="game-info">
+                <h3>🎮 How to Play</h3>
+                <ol style="list-style-type: decimal; margin-left: 20px;">
+                    <li>Use the on-screen joystick to move your character</li>
+                    <li>Walk up to NPCs and press <strong>Talk</strong> to hear their story</li>
+                    <li>Collect the 3 glowing purple Aetherian Fragments on Map 1</li>
+                    <li>Step through the portal to reach Map 2</li>
+                    <li>Tap anywhere on screen to shoot energy bolts at the UEC Sentinel</li>
+                    <li>Defeat the Sentinel, then reach the portal to win</li>
+                </ol>
+            </div>
+
+            <div class="download-section">
+                <h3>📱 Download &amp; Install</h3>
+                <p>Download the Android APK and install on your Android device:</p>
+                <a href="echoes-of-elysium.apk" class="apk-link" download>
+                    📲 Download Echoes of Elysium APK
+                </a>
+                <p><small>Android 5.0+ required | Enable "Install from unknown sources" in Settings before installing</small></p>
+            </div>
+
+            <div class="game-info">
+                <h3>🛠️ Technical Details</h3>
+                <ul style="list-style-type: disc; margin-left: 20px;">
+                    <li><strong>Platform:</strong> Flutter + Bonfire RPG engine</li>
+                    <li><strong>Target:</strong> Android APK (54 MB)</li>
+                    <li><strong>Audio:</strong> just_audio (music) + audioplayers (SFX)</li>
+                    <li><strong>Voices:</strong> ElevenLabs TTS API</li>
+                    <li><strong>Maps:</strong> Tiled-based top-down maps with walkability masks</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
