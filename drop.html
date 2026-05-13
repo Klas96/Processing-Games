@@ -8,36 +8,22 @@
     <body>
 
 
-    <!-- ================================
-    Start Navigation Bar
-    ================================= -->
-    <header>
-        <div class="headerCol">
-          <div class="container-fluid">
-            <div class="row align-items-center">
-              <div class="col">
-                <div class="navCollapseCol">
-                  <div class="navCol">
-                    <ul>
-                      <li><a href="index.html">Home</a></li>
-                      <li><a href="drop.html">Drop</a></li>
-                      <li><a href="BallUppAndDown.html">Ball Upp and Down</a></li>
-                      <li><a href="aquarium.html">Aquarium</a></li>
-                      <li><a href="TopDownGame.html">Adventure Game</a></li>
-                      <li><a href="space_shooter.html">Space Shooter</a></li>
-                      <li><a href="tectonic.html">Tectonic</a></li>
-                      <li><a href="truefalsegame.html">True/False Game</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="headerCol">
+        <div class="navCol">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="drop.html">Drop</a></li>
+                <li><a href="BallUppAndDown.html">Ball Upp and Down</a></li>
+                <li><a href="aquarium.html">Aquarium</a></li>
+                <li><a href="TopDownGame.html">Adventure Game</a></li>
+                <li><a href="space_shooter.html">Space Shooter</a></li>
+                <li><a href="tectonic.html">Tectonic</a></li>
+                <li><a href="truefalsegame.html">True/False Game</a></li>
+                <li><a href="mooves.html">Mooves</a></li>
+                <li><a href="echoes-of-elysium.html">Echoes of Elysium</a></li>
+            </ul>
         </div>
-      </header>
-      <!-- ================================
-      End Navigation Bar
-      ================================= -->
+    </div>
       <div class="content"></div>
         <h1>Drop</h1>
         <p>Two player game about not getting wett</p>
@@ -48,6 +34,7 @@
           var BlobbX = 200*2;
           var grass = loadImage("GrassBlock.png");
           var points = 0;
+          var gameOver = false;
           var ladda = -150;
           var laddahastihet = 2;
           var increaseCharge = 0;
@@ -69,7 +56,8 @@
             }
           }
 
-          var cloud = function(xCloudx) {
+          var cloud = function(baseX) {
+            var xCloudx = ((baseX + xCloud) % 1600) - 200;
             noStroke();
             fill(255, 255, 255);
             ellipse(xCloudx + 20, 200, 230, 110);
@@ -78,12 +66,6 @@
             ellipse(xCloudx + 600, 160, 43*2, 30*2);
             ellipse(xCloudx + 317*2, 67, 70, 50);
             ellipse(xCloudx + 347*2, 77*2, 80*2, 30*2);
-            xCloud++;
-            
-            if (xCloudx > 1000) {
-              xCloudx = -800;
-            }
-
             stroke(0, 0, 0);
           };
           
@@ -98,9 +80,13 @@
 
 
           draw = function() {
+            if (gameOver) {
+              return;
+            }
             background(0, 162, 255);
 
             //clouds
+            xCloud = (xCloud + 1) % 1600;
             for (var i = 0; i < laddahastihet; i++) {
               cloud(i*428);
             }
@@ -169,10 +155,13 @@
               ellipse(xPositions[i], yPositions[i], 20, 20);
               yPositions[i] += 10;
               if(yPositions[i] > 500 && yPositions[i] < 600 && xPositions[i] < BlobbX + 2*25 && xPositions[i] > BlobbX-25){
-                  println("GAME OVER");
-                  textSize(50*2);
-                  text("points" + points, 262, 260, 256, 250);
-                  draw = 1;
+                  gameOver = true;
+                  background(0, 0, 0);
+                  fill(255, 255, 255);
+                  textSize(100);
+                  text("GAME OVER", 400, 350);
+                  textSize(40);
+                  text("Points: " + points, 400, 430);
               }
           }
 
